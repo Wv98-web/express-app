@@ -21,8 +21,13 @@ exports.register = async (req, res, next) => {
 		// 2.2 业务数据验证
 
 		// 3.验证通过，将数据保存到数据库
-		const user = new User(req.body.user);
+		let user = new User(req.body.user);
+		console.log(user.password);
 		await user.save();
+
+		// password 不发送到客户端
+		// user = user.toJSON(); // mongoose数据对象，转换成json对象
+		// delete user.password;
 
 		// 4.发送成功响应
 		res.status(201).json({
