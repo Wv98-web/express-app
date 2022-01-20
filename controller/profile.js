@@ -1,4 +1,4 @@
-exports.getProfile = async (req, res) => {
+exports.getProfile = async (req, res, next) => {
 	try {
 		res.send("get /profiles/:username");
 	} catch (error) {
@@ -6,7 +6,7 @@ exports.getProfile = async (req, res) => {
 	}
 };
 
-exports.addFollowProfile = async (req, res) => {
+exports.addFollowProfile = async (req, res, next) => {
 	try {
 		res.send("post /profiles/:username/follow");
 	} catch (error) {
@@ -14,7 +14,7 @@ exports.addFollowProfile = async (req, res) => {
 	}
 };
 
-exports.deleteFollowProfile = async (req, res) => {
+exports.deleteFollowProfile = async (req, res, next) => {
 	try {
 		res.send("delete /profiles/:username/follow");
 	} catch (error) {

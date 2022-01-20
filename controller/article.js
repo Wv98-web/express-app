@@ -1,4 +1,4 @@
-exports.getArticlesFeed = async (req, res) => {
+exports.getArticlesFeed = async (req, res, next) => {
 	try {
 		res.send("get /articles/feed");
 	} catch (error) {
@@ -6,7 +6,7 @@ exports.getArticlesFeed = async (req, res) => {
 	}
 };
 
-exports.getArticles = async (req, res) => {
+exports.getArticles = async (req, res, next) => {
 	try {
 		res.send("get /articles");
 	} catch (error) {
@@ -14,7 +14,7 @@ exports.getArticles = async (req, res) => {
 	}
 };
 
-exports.addArticles = async (req, res) => {
+exports.addArticles = async (req, res, next) => {
 	try {
 		res.send("post /articles");
 	} catch (error) {
@@ -22,7 +22,7 @@ exports.addArticles = async (req, res) => {
 	}
 };
 
-exports.getArticlesSlug = async (req, res) => {
+exports.getArticlesSlug = async (req, res, next) => {
 	try {
 		res.send("get /articles/:slug");
 	} catch (error) {
@@ -30,7 +30,7 @@ exports.getArticlesSlug = async (req, res) => {
 	}
 };
 
-exports.updateArticlesSlug = async (req, res) => {
+exports.updateArticlesSlug = async (req, res, next) => {
 	try {
 		res.send("put /articles/:slug");
 	} catch (error) {
@@ -38,7 +38,7 @@ exports.updateArticlesSlug = async (req, res) => {
 	}
 };
 
-exports.deleteArticlesSlug = async (req, res) => {
+exports.deleteArticlesSlug = async (req, res, next) => {
 	try {
 		res.send("delete /articles/:slug");
 	} catch (error) {
@@ -46,7 +46,7 @@ exports.deleteArticlesSlug = async (req, res) => {
 	}
 };
 
-exports.deleteArticlesSlugCommits = async (req, res) => {
+exports.deleteArticlesSlugCommits = async (req, res, next) => {
 	try {
 		res.send("get /articles/:slug/comments");
 	} catch (error) {
@@ -54,7 +54,7 @@ exports.deleteArticlesSlugCommits = async (req, res) => {
 	}
 };
 
-exports.getArticlesSlugCommits = async (req, res) => {
+exports.getArticlesSlugCommits = async (req, res, next) => {
 	try {
 		res.send("get /articles/:slug/comments");
 	} catch (error) {
@@ -62,7 +62,7 @@ exports.getArticlesSlugCommits = async (req, res) => {
 	}
 };
 
-exports.addArticlesSlugCommits = async (req, res) => {
+exports.addArticlesSlugCommits = async (req, res, next) => {
 	try {
 		res.send("post /articles/:slug/comments");
 	} catch (error) {
@@ -70,7 +70,7 @@ exports.addArticlesSlugCommits = async (req, res) => {
 	}
 };
 
-exports.deleteArticlesSlugCommit = async (req, res) => {
+exports.deleteArticlesSlugCommit = async (req, res, next) => {
 	try {
 		res.send("delete /articles/:slug/comments/:id");
 	} catch (error) {
@@ -78,7 +78,7 @@ exports.deleteArticlesSlugCommit = async (req, res) => {
 	}
 };
 
-exports.addFavoriteArticle = async (req, res) => {
+exports.addFavoriteArticle = async (req, res, next) => {
 	try {
 		res.send("post /articles/:slug/favorite");
 	} catch (error) {
@@ -86,7 +86,7 @@ exports.addFavoriteArticle = async (req, res) => {
 	}
 };
 
-exports.deleteFavoriteArticle = async (req, res) => {
+exports.deleteFavoriteArticle = async (req, res, next) => {
 	try {
 		res.send("delete /articles/:slug/favorite");
 	} catch (error) {
