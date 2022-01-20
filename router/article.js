@@ -1,99 +1,34 @@
 const express = require("express");
+const articleCtrl = require("../controller/article");
 
 const router = express.Router();
 
-// 获取文章
-router.get("/articles/feed", async (req, res) => {
-	try {
-		res.send("get /articles/feed");
-	} catch (error) {
-		next(error);
-	}
-});
+// 获取关注作者文章列表
+router.get("/articles/feed", articleCtrl.getArticlesFeed);
+
+// 获取文章列表
+router.get("/articles", articleCtrl.getArticles);
+
+router.post("/articles", articleCtrl.addArticles);
 
 //
-router.get("/articles", async (req, res) => {
-	try {
-		res.send("get /articles");
-	} catch (error) {
-		next(error);
-	}
-});
+router.get("/articles/:slug", articleCtrl.getArticlesSlug);
 
-router.post("/articles", async (req, res) => {
-	try {
-		res.send("post /articles");
-	} catch (error) {
-		next(error);
-	}
-});
+router.put("/articles/:slug", articleCtrl.updateArticlesSlug);
+
+router.delete("/articles/:slug", articleCtrl.deleteArticlesSlug);
 
 //
-router.get("/articles/:slug", async (req, res) => {
-	try {
-		res.send("get /articles/:slug");
-	} catch (error) {
-		next(error);
-	}
-});
+router.get("/articles/:slug/comments", articleCtrl.getArticlesSlugCommits);
 
-router.put("/articles/:slug", async (req, res) => {
-	try {
-		res.send("put /articles/:slug");
-	} catch (error) {
-		next(error);
-	}
-});
-
-router.delete("/articles/:slug", async (req, res) => {
-	try {
-		res.send("delete /articles/:slug");
-	} catch (error) {
-		next(error);
-	}
-});
+router.post("/articles/:slug/comments", articleCtrl.addArticlesSlugCommits);
 
 //
-router.get("/articles/:slug/comments", async (req, res) => {
-	try {
-		res.send("get /articles/:slug/comments");
-	} catch (error) {
-		next(error);
-	}
-});
-
-router.post("/articles/:slug/comments", async (req, res) => {
-	try {
-		res.send("post /articles/:slug/comments");
-	} catch (error) {
-		next(error);
-	}
-});
+router.delete("/articles/:slug/comments/:id", articleCtrl.deleteArticlesSlugCommit);
 
 //
-router.delete("/articles/:slug/comments/:id", async (req, res) => {
-	try {
-		res.send("delete /articles/:slug/comments/:id");
-	} catch (error) {
-		next(error);
-	}
-});
+router.post("/articles/:slug/favorite", articleCtrl.addFavoriteArticle);
 
-//
-router.post("/articles/:slug/favorite", async (req, res) => {
-	try {
-		res.send("post /articles/:slug/favorite");
-	} catch (error) {
-		next(error);
-	}
-});
-
-router.delete("/articles/:slug/favorite", async (req, res) => {
-	try {
-		res.send("delete /articles/:slug/favorite");
-	} catch (error) {
-		next(error);
-	}
-});
+router.delete("/articles/:slug/favorite", articleCtrl.deleteFavoriteArticle);
 
 module.exports = router;

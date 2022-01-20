@@ -1,14 +1,9 @@
 const express = require("express");
+const tagCtrl = require("../controller/tag");
 
 const router = express.Router();
 
-//
-router.get("/tags", async (req, res) => {
-	try {
-		res.send("get /tags");
-	} catch (error) {
-		next(error);
-	}
-});
+// 获取标签
+router.get("/tags", tagCtrl.getTag);
 
 module.exports = router;
