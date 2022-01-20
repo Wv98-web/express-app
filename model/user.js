@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
+const baseModel = require("./baseModel");
 
 var userSchema = new mongoose.Schema({
+	...baseModel,
 	username: { type: String, require: true },
 	email: { type: String, require: true },
 	password: { type: String, require: true },
@@ -11,14 +13,6 @@ var userSchema = new mongoose.Schema({
 	Image: {
 		type: String,
 		default: null,
-	},
-	createAt: {
-		type: Date,
-		default: Date.now,
-	},
-	updateAt: {
-		type: Date,
-		default: Date.now,
 	},
 });
 
