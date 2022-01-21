@@ -3,7 +3,9 @@ const { User } = require("../model");
 // 用户登录
 exports.login = async (req, res, next) => {
 	try {
-		// 处理请求
+		// 1.数据验证
+		// 2.生成token
+		// 3.发送成功响应 (包含token的用户信息)
 		res.send("post /users/login");
 	} catch (err) {
 		next(err);
