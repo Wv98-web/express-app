@@ -1,34 +1,35 @@
 const express = require("express");
 const articleCtrl = require("../controller/article");
+const auth = require("../middleware/auth");
 
 const router = express.Router();
 
 // 获取关注作者文章列表
-router.get("/articles/feed", articleCtrl.getArticlesFeed);
+router.get("/articles/feed", auth, articleCtrl.getArticlesFeed);
 
 // 获取文章列表
-router.get("/articles", articleCtrl.getArticles);
+router.get("/articles", auth, articleCtrl.getArticles);
 
-router.post("/articles", articleCtrl.addArticles);
-
-//
-router.get("/articles/:slug", articleCtrl.getArticlesSlug);
-
-router.put("/articles/:slug", articleCtrl.updateArticlesSlug);
-
-router.delete("/articles/:slug", articleCtrl.deleteArticlesSlug);
+router.post("/articles", auth, articleCtrl.addArticles);
 
 //
-router.get("/articles/:slug/comments", articleCtrl.getArticlesSlugCommits);
+router.get("/articles/:slug", auth, articleCtrl.getArticlesSlug);
 
-router.post("/articles/:slug/comments", articleCtrl.addArticlesSlugCommits);
+router.put("/articles/:slug", auth, articleCtrl.updateArticlesSlug);
+
+router.delete("/articles/:slug", auth, articleCtrl.deleteArticlesSlug);
 
 //
-router.delete("/articles/:slug/comments/:id", articleCtrl.deleteArticlesSlugCommit);
+router.get("/articles/:slug/comments", auth, articleCtrl.getArticlesSlugCommits);
+
+router.post("/articles/:slug/comments", auth, articleCtrl.addArticlesSlugCommits);
 
 //
-router.post("/articles/:slug/favorite", articleCtrl.addFavoriteArticle);
+router.delete("/articles/:slug/comments/:id", auth, articleCtrl.deleteArticlesSlugCommit);
 
-router.delete("/articles/:slug/favorite", articleCtrl.deleteFavoriteArticle);
+//
+router.post("/articles/:slug/favorite", auth, articleCtrl.addFavoriteArticle);
+
+router.delete("/articles/:slug/favorite", auth, articleCtrl.deleteFavoriteArticle);
 
 module.exports = router;

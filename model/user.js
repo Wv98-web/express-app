@@ -15,7 +15,7 @@ var userSchema = new mongoose.Schema({
 		set: (value) => {
 			return md5(value);
 		},
-		// select: false,
+		select: false,
 	},
 	bio: {
 		type: String,

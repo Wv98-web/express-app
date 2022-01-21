@@ -10,7 +10,13 @@ exports.login = [
 	]),
 	validator([
 		body("user.email").custom(async (email, { req }) => {
-			const user = await User.findOne({ email });
+			const user = await User.findOne({ email }).select([
+				"email",
+				"username",
+				"bio",
+				"image",
+				"password",
+			]); // 选择
 			if (!user) {
 				return Promise.reject("用户不存在");
 			}
