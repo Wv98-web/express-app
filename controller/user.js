@@ -12,7 +12,10 @@ exports.login = async (req, res, next) => {
 			{
 				userId: user._id,
 			},
-			jwtSecret
+			jwtSecret,
+			{
+				expiresIn: 60 * 60 * 24,
+			}
 		);
 
 		// 3.发送成功响应 (包含token的用户信息)
