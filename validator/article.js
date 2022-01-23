@@ -53,5 +53,8 @@ exports.updateArticle = [
 	},
 ];
 
+// 校验文章id是否正确
 // 校验文章是否存在
 // 修改的文章作者是否是当前登录用户
+
+exports.deleteArticle = exports.updateArticle;

@@ -21,7 +21,12 @@ router.get("/articles/:articleId", auth, articleValidator.getArticle, articleCtr
 router.put("/articles/:articleId", auth, articleValidator.updateArticle, articleCtrl.updateArticle);
 
 // 删除文章
-router.delete("/articles/:articleId", auth, articleCtrl.deleteArticle);
+router.delete(
+	"/articles/:articleId",
+	auth,
+	articleValidator.deleteArticle,
+	articleCtrl.deleteArticle
+);
 
 // 获取文章评论列表
 router.get("/articles/:articleId/comments", auth, articleCtrl.getArticleCommits);
