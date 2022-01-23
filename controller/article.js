@@ -1,3 +1,5 @@
+const { Article } = require("../model");
+
 exports.getArticlesFeed = async (req, res, next) => {
 	try {
 		res.send("get /articles/feed");
@@ -16,7 +18,12 @@ exports.getArticles = async (req, res, next) => {
 
 exports.addArticles = async (req, res, next) => {
 	try {
-		res.send("post /articles");
+		const article = new Article(req.body.article);
+		await article.save();
+
+		res.status(201).json({
+			article,
+		});
 	} catch (error) {
 		next(error);
 	}
