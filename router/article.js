@@ -15,26 +15,26 @@ router.get("/articles", auth, articleCtrl.getArticles);
 router.post("/articles", auth, articleValidator.createArticle, articleCtrl.addArticles);
 
 // 获取文章
-router.get("/articles/:slug", auth, articleCtrl.getArticlesSlug);
+router.get("/articles/:articleId", auth, articleValidator.getArticle, articleCtrl.getArticleById);
 
 // 更新文章
-router.put("/articles/:slug", auth, articleCtrl.updateArticlesSlug);
+router.put("/articles/:articleId", auth, articleCtrl.updateArticlesSlug);
 
 // 删除文章
-router.delete("/articles/:slug", auth, articleCtrl.deleteArticlesSlug);
+router.delete("/articles/:articleId", auth, articleCtrl.deleteArticlesSlug);
 
 // 获取文章评论
-router.get("/articles/:slug/comments", auth, articleCtrl.getArticlesSlugCommits);
+router.get("/articles/:articleId/comments", auth, articleCtrl.getArticlesSlugCommits);
 
 // 添加文章评论
-router.post("/articles/:slug/comments", auth, articleCtrl.addArticlesSlugCommits);
+router.post("/articles/:articleId/comments", auth, articleCtrl.addArticlesSlugCommits);
 
 // 删除文章评论
-router.delete("/articles/:slug/comments/:id", auth, articleCtrl.deleteArticlesSlugCommit);
+router.delete("/articles/:articleId/comments/:id", auth, articleCtrl.deleteArticlesSlugCommit);
 
 //
-router.post("/articles/:slug/favorite", auth, articleCtrl.addFavoriteArticle);
+router.post("/articles/:articleId/favorite", auth, articleCtrl.addFavoriteArticle);
 
-router.delete("/articles/:slug/favorite", auth, articleCtrl.deleteFavoriteArticle);
+router.delete("/articles/:articleId/favorite", auth, articleCtrl.deleteFavoriteArticle);
 
 module.exports = router;

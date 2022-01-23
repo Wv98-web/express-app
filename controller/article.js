@@ -31,9 +31,15 @@ exports.addArticles = async (req, res, next) => {
 	}
 };
 
-exports.getArticlesSlug = async (req, res, next) => {
+exports.getArticleById = async (req, res, next) => {
 	try {
-		res.send("get /articles/:slug");
+		const article = await Article.findById(req.params.articleId).populate("author");
+		if (!article) {
+			return res.status(404).end();
+		}
+		return res.status(200).json({
+			article,
+		});
 	} catch (error) {
 		next(error);
 	}
