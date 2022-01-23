@@ -1,4 +1,5 @@
-const { Article } = require("../model");
+const auth = require("../middleware/auth");
+const { User, Article } = require("../model");
 
 exports.getArticlesFeed = async (req, res, next) => {
 	try {
@@ -11,10 +12,16 @@ exports.getArticlesFeed = async (req, res, next) => {
 // 获取文章列表
 exports.getArticles = async (req, res, next) => {
 	try {
-		const { limit = 5, offset = 0, tag } = req.query;
+		const { limit = 5, offset = 0, tag, author } = req.query;
 		const filter = {};
 		if (tag) {
 			filter.tagList = tag;
+		}
+		if (author) {
+			const user = await User.findOne({
+				username: author,
+			});
+			filter.author = user ? user._id : null;
 		}
 
 		// skip 跳过多少条
