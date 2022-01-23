@@ -11,10 +11,15 @@ exports.getArticlesFeed = async (req, res, next) => {
 // 获取文章列表
 exports.getArticles = async (req, res, next) => {
 	try {
-		const { limit = 5, offset = 0 } = req.query;
+		const { limit = 5, offset = 0, tag } = req.query;
+		const filter = {};
+		if (tag) {
+			filter.tagList = tag;
+		}
+
 		// skip 跳过多少条
 		// limit 取多少条
-		const articles = await Article.find()
+		const articles = await Article.find(filter)
 			.skip(Number.parseInt(offset))
 			.limit(Number.parseInt(limit));
 		const articlesCount = await Article.countDocuments();
