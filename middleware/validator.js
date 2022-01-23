@@ -1,9 +1,11 @@
 const express = require("express");
-const { validationResult, ValidationChain } = require("express-validator");
+const { validationResult, ValidationChain, buildCheckFunction } = require("express-validator");
 // can be reused by many routes
 
+const { isValidObjectId } = require("mongoose");
+
 // parallel processing
-module.exports = (validations) => {
+exports = module.exports = (validations) => {
 	return async (req, res, next) => {
 		await Promise.all(validations.map((validation) => validation.run(req)));
 
@@ -14,4 +16,12 @@ module.exports = (validations) => {
 
 		res.status(400).json({ errors: errors.array() });
 	};
+};
+
+exports.isValidObjectId = (location, fields) => {
+	return buildCheckFunction(location)(fields).custom(async (value) => {
+		if (!isValidObjectId(value)) {
+			return Promise.reject("id,不是一个有效的 ObjectID");
+		}
+	});
 };

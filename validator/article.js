@@ -19,10 +19,17 @@ exports.getArticle = validator([
 	// 	return true;
 	// }),
 
-	param("articleId").custom(async (value) => {
-		if (!mongoose.isValidObjectId(value)) {
-			// 异步失败 返回一个失败状态的promise
-			return Promise.reject("文章id类型错误");
-		}
-	}),
+	// param("articleId").custom(async (value) => {
+	// 	if (!mongoose.isValidObjectId(value)) {
+	// 		// 异步失败 返回一个失败状态的promise
+	// 		return Promise.reject("文章id类型错误");
+	// 	}
+	// }),
+
+	validator.isValidObjectId(["params"], "articleId"),
+]);
+
+exports.updateArticle = validator([
+	validator.isValidObjectId(["params"], "articleId"),
+	// param('articleId').isValidObjectId()
 ]);

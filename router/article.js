@@ -18,7 +18,7 @@ router.post("/articles", auth, articleValidator.createArticle, articleCtrl.creat
 router.get("/articles/:articleId", auth, articleValidator.getArticle, articleCtrl.getArticle);
 
 // 更新文章
-router.put("/articles/:articleId", auth, articleCtrl.updateArticle);
+router.put("/articles/:articleId", auth, articleValidator.updateArticle, articleCtrl.updateArticle);
 
 // 删除文章
 router.delete("/articles/:articleId", auth, articleCtrl.deleteArticle);
