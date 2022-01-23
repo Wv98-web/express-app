@@ -28,7 +28,10 @@ exports.getArticles = async (req, res, next) => {
 		// limit 取多少条
 		const articles = await Article.find(filter)
 			.skip(Number.parseInt(offset))
-			.limit(Number.parseInt(limit));
+			.limit(Number.parseInt(limit))
+			.sort({
+				createdAt: -1, // -1 倒叙，1 升序
+			});
 		const articlesCount = await Article.countDocuments();
 
 		res.status(200).json({
@@ -45,7 +48,7 @@ exports.createArticle = async (req, res, next) => {
 	try {
 		const article = new Article(req.body.article);
 		article.author = req.user._id;
-		article.populate("author"); // 映射
+		article.populate("author"); // 映射 ref
 		await article.save();
 
 		res.status(201).json({
