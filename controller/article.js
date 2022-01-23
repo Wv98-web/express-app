@@ -19,6 +19,8 @@ exports.getArticles = async (req, res, next) => {
 exports.addArticles = async (req, res, next) => {
 	try {
 		const article = new Article(req.body.article);
+		article.author = req.user._id;
+		article.populate("author"); // 映射
 		await article.save();
 
 		res.status(201).json({

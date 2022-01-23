@@ -5,9 +5,9 @@ const Schema = mongoose.Schema;
 
 var articleSchema = new mongoose.Schema({
 	...baseModel,
-	title: { type: String, require: true },
-	description: { type: String, require: true },
-	body: { type: String, require: true },
+	title: { type: String, required: true },
+	description: { type: String, required: true },
+	body: { type: String, required: true },
 	tagList: {
 		type: [String],
 		default: [],
@@ -23,6 +23,7 @@ var articleSchema = new mongoose.Schema({
 	author: {
 		type: Schema.Types.ObjectId,
 		ref: "User",
+		required: true,
 	},
 });
 

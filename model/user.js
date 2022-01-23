@@ -4,14 +4,14 @@ const md5 = require("../util/md5");
 
 var userSchema = new mongoose.Schema({
 	...baseModel,
-	username: { type: String, require: true },
+	username: { type: String, required: true },
 	email: {
 		type: String,
-		require: true,
+		required: true,
 	},
 	password: {
 		type: String,
-		require: true,
+		required: true,
 		set: (value) => {
 			return md5(value);
 		},
